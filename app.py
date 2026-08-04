@@ -1,6 +1,7 @@
 # step -1: importing modules
 from flask import Flask, render_template
 import sqlite3
+import os
 
 
 # step -2: app creation & DB configuration
@@ -163,4 +164,7 @@ def dashboard():
 # step -5: run & debug
 if __name__ == "__main__":
     init_db()
-    app.run(debug=True, port=3000)
+    app.run(
+        host="0.0.0.0",
+        port=int(os.environ.get("PORT", 5000))
+    )
